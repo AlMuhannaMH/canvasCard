@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ar">
-
 <head>
 	<title>انشاء بطاقة تهنئة عيد الفطر</title>
 	<meta charset="utf-8">
@@ -17,7 +16,6 @@
 		</div>
 	</div>
 </head>
-
 <body>
 	<section class="ftco-section">
 		<div class="container">
@@ -37,14 +35,16 @@
 										<div class="row " align="center">
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="text" class="form-control" name="name" id="name"
+													<input
+														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
+														type="text" class="form-control" name="name" id="name"
 														placeholder="الاسم" style='width:20em;text-align: center'>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="button" value="معيانة" onclick="overlayText()"
-														class="btn btn-primary">
+													<input id="preview" type="button" value="Preview"
+														onclick="overlayText()" class="btn btn-primary">
 													<!-- <input type="button" value="تحميل الصورة" id="save-button"
 														class="btn btn-primary"> -->
 													<div class="submitting"></div>
@@ -71,22 +71,12 @@
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
-		integrity="sha512-s/XK4vYVXTGeUSv4bRPOuxSDmDlTedEpMEcAQk0t/FMd9V6ft8iXdwSBxV0eD60c6w/tjotSlKu9J2AAW1ckTA=="
-		crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
-
-	<!-- <script src="js/main.js"></script> -->
 	<script src="js/scrpit.js"></script>
-
 </body>
 <div class="row justify-content-center">
 	<div class="col-md-6 text-center p-2">
 		<p>&copy; 2023 Mohammed AlMuhanna</p>
 	</div>
 </div>
-
 </html>

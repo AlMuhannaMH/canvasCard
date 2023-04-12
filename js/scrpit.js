@@ -1,4 +1,4 @@
-// var cardContainer = document.getElementById('demo');
+var cardContainer = document.getElementById('demo');
 const saveButton = document.getElementById('save-button');
 
 function overlayText() {
@@ -24,7 +24,7 @@ function overlayText() {
                   }
             );
       };
-      
+
       img.src = "images/img.jpg";
 }
 
@@ -37,11 +37,10 @@ function downloadURI(uri, name) {
 
 saveButton.addEventListener('click', function (event) {
       event.preventDefault();
-      html2canvas(document.getElementById("demo"), {
+      html2canvas(cardContainer, {
             onrendered: function (canvas) {
                   var myImage = canvas.toDataURL("image/png");
-                  // var myImage = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-                  downloadURI(myImage, "EidAlFitrGreeting.png");
+                  downloadURI("data:" + myImage, "EidAlFitrGreeting.png");                
             }
       });
 });
