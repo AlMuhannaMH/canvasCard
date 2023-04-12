@@ -35,12 +35,17 @@ function downloadURI(uri, name) {
       link.click();
 }
 
-saveButton.addEventListener('click', function (event) {
-      event.preventDefault();
-      html2canvas(cardContainer, {
-            onrendered: function (canvas) {
-                  var myImage = canvas.toDataURL("image/png");
-                  downloadURI("data:" + myImage, "EidAlFitrGreeting.png");                
-            }
-      });
-});
+// saveButton.addEventListener('click', function (event) {
+//       event.preventDefault();
+//       html2canvas(cardContainer, {
+//             onrendered: function (canvas) {
+//                   var myImage = canvas.toDataURL("image/png");
+//                   downloadURI("data:" + myImage, "EidAlFitrGreeting.png");                
+//             }
+//       });
+// });
+var canvas = document.getElementById("demo");
+download_img = function(el) {
+      var image = canvas.toDataURL("image/jpg");
+      el.href = image;
+    };

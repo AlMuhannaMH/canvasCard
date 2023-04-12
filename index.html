@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title data-lang="en">Create your Eid AlFitr Greeting</title>
@@ -11,13 +12,13 @@
 	<link rel="stylesheet" href="css/style.css">
 	<div class="row justify-content-center">
 		<div class="col-md-6 text-center p-2">
-			<img class="img" src="images/logo.png" alt=""
-				style="display: block; margin: 0 auto;">
+			<img class="img" src="images/logo.png" alt="" style="display: block; margin: 0 auto;">
 			<h2 data-lang="en" class="heading-section">Create your Eid AlFitr Greeting</h2>
 			<h2 data-lang="ar" class="heading-section">انشاء بطاقة تهنئة عيد الفطر</h2>
 		</div>
 	</div>
 </head>
+
 <body>
 	<section class="ftco-section">
 		<div class="container">
@@ -53,16 +54,15 @@
 										<div class="row " align="center">
 											<div class="col-md-12">
 												<div class="form-group">
-													<input
-													    data-lang="ar"
-														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
-														type="text" class="form-control" name="name" id="name"
-														placeholder="الاسم" style='width:20em;text-align: center'>
-														<input
-													    data-lang="en"
+													<input data-lang="en"
 														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
 														type="text" class="form-control" name="name" id="name"
 														placeholder="Name" style='width:20em;text-align: center'>
+													<input data-lang="ar"
+														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
+														type="text" class="form-control" name="name" id="name"
+														placeholder="الاسم" style='width:20em;text-align: center'>
+
 												</div>
 											</div>
 											<div class="col-md-12">
@@ -73,6 +73,8 @@
 														onclick="overlayText()" class="btn btn-primary">
 													<!-- <input type="button" value="تحميل الصورة" id="save-button"
 														class="btn btn-primary"> -->
+													<a id="download" download="myImage.jpg" href=""
+														onclick="download_img(this);">Download to myImage.jpg</a>
 													<div class="submitting"></div>
 												</div>
 											</div>
@@ -106,4 +108,5 @@
 		<p>&copy; 2023 Mohammed AlMuhanna</p>
 	</div>
 </div>
+
 </html>
