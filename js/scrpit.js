@@ -1,6 +1,3 @@
-var cardContainer = document.getElementById('demo');
-const saveButton = document.getElementById('save-button');
-
 function overlayText() {
       fontTajawal = new FontFace("Tajawal", "url(https://fonts.cdnfonts.com/s/15774/Tajawal-Bold.woff)", { weight: "700" });
       document.fonts.add(fontTajawal);
@@ -28,24 +25,8 @@ function overlayText() {
       img.src = "images/img.jpg";
 }
 
-function downloadURI(uri, name) {
-      var link = document.createElement("a");
-      link.download = name;
-      link.href = uri;
-      link.click();
-}
-
-// saveButton.addEventListener('click', function (event) {
-//       event.preventDefault();
-//       html2canvas(cardContainer, {
-//             onrendered: function (canvas) {
-//                   var myImage = canvas.toDataURL("image/png");
-//                   downloadURI("data:" + myImage, "EidAlFitrGreeting.png");                
-//             }
-//       });
-// });
 var canvas = document.getElementById("demo");
-download_img = function(el) {
+download_img = function (el) {
       var image = canvas.toDataURL("image/jpg");
       el.href = image;
-    };
+};
