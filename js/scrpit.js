@@ -11,10 +11,10 @@ function overlayText() {
             fontTajawal.load().then(
                   () => {
                         ctx.font = '700 36px "Tajawal"';
-                        ctx.fillStyle = "rgba(255, 255, 255, 1)";
+                        ctx.fillStyle = "rgba(29,123,48, 1)";
                         ctx.textAlign = "center";
                         ctx.textBaseline = "middle";
-                        ctx.fillText(document.getElementById("name").value, 350, 620, 500);
+                        ctx.fillText(document.getElementById("name").value, 833, 657, 500);
                   },
                   (err) => {
                         console.error(err);
