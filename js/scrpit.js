@@ -7,13 +7,16 @@ function overlayText() {
       img.onload = () => {
             canvas.width = img.naturalWidth;
             canvas.height = img.naturalHeight;
-            ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight); 
+            ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
             fontTajawal.load().then(
                   () => {
-                        ctx.font = '700 36px "Tajawal"';                   
-                        ctx.fillStyle = "rgba(29,123,48, 1)";
-                        ctx.textAlign = "center";
                         ctx.textBaseline = "middle";
+                        ctx.font = '700 36px "Tajawal"';
+                        ctx.textAlign = "center";
+                        var width = ctx.measureText(document.getElementById("name").value).width;
+                        ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+                        ctx.fillRect(836-width / 2 - 10, 659-30, width + 20, 50);// + 20 since the text begins at 10
+                        ctx.fillStyle = "rgba(29,123,48, 1)";
                         ctx.fillText(document.getElementById("name").value, 836, 659, 500);
                   },
                   (err) => {
