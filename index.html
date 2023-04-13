@@ -46,15 +46,35 @@
 									<h3 data-lang="ar">شارك تهنئة عيد الفطر</h3>
 									<p data-lang="en">Enter you name</p>
 									<p data-lang="ar">أكتب اسمك</p>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									<form data-lang="en" method="POST" id="contactForm" name="contactForm" class="contactForm">
 										<div class="row " align="center">
 											<div class="col-md-12">
 												<div class="form-group">
-													<input data-lang="en"
+													<input 
 														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
 														type="text" class="form-control" name="name" id="name"
 														placeholder="Name" style='width:20em;text-align: center'>
-													<input data-lang="ar"
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div  class="form-group">
+													<input id="preview" type="button" value="Create"
+														onclick="overlayText()" class="btn btn-primary">
+
+													<a class="btn btn-primary" id="download"
+														download="EidAlFitrGreeting.png" href=""
+														onclick="download_img(this);">Download Image</a>
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+									<form data-lang="ar" method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row " align="center">
+											<div class="col-md-12">
+												<div class="form-group">
+
+													<input
 														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
 														type="text" class="form-control" name="name" id="name"
 														placeholder="الاسم" style='width:20em;text-align: center'>
@@ -63,15 +83,10 @@
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input data-lang="en" id="preview" type="button" value="Create"
-														onclick="overlayText()" class="btn btn-primary">
-													<input data-lang="ar" id="preview" type="button" value="معاينة"
+													<input id="preview" type="button" value="معاينة"
 														onclick="overlayText()" class="btn btn-primary">
 
-													<a data-lang="en" class="btn btn-primary" id="download"
-														download="EidAlFitrGreeting.png" href=""
-														onclick="download_img(this);">Download Image</a>
-													<a data-lang="ar" class="btn btn-primary" id="download"
+													<a class="btn btn-primary" id="download"
 														download="EidAlFitrGreeting.png" href=""
 														onclick="download_img(this);">تحميل الصورة</a>
 													<div class="submitting"></div>
@@ -82,7 +97,7 @@
 								</div>
 							</div>
 							<div class="col-md-6 d-flex align-items-stretch">
-								<img class="w-100 p-2 img" src="images/img.jpg" alt="" id="image">
+								<img class="w-100 p-2 img" src="images/EidAlFitrGreeting.jpg" alt="" id="image">
 							</div>
 							<div class="col-md-6 d-flex align-items-stretch">
 								<canvas class="w-100 p-2 img" id="demo"></canvas>

@@ -22,7 +22,7 @@ function overlayText() {
             );
       };
 
-      img.src = "images/img.jpg";
+      img.src = "images/EidAlFitrGreeting.jpg";
 }
 
 var canvas = document.getElementById("demo");
