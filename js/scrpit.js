@@ -34,3 +34,11 @@ download_img = function (el) {
       el.href = image;
 };
 
+function validateInput() {
+      var name = document.getElementById("name").value;
+      if (name === "") {
+            alert("Please fill in your name and click on 'Create';  الرجاء تعبئة خانة الاسم والضغط على زر الانشاء");
+      } else {
+            overlayText()
+      }
+}
