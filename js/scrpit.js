@@ -29,10 +29,25 @@ function overlayText() {
 }
 
 var canvas = document.getElementById("demo");
+
 download_img = function (el) {
-      var image = canvas.toDataURL("image/jpg");
-      el.href = image;
+      const blank = isCanvasBlank(document.getElementById('demo'));
+      alert(blank ? 'blank' : 'not blank');
+      if (!blank) {
+            var image = canvas.toDataURL("image/jpg");
+            el.href = image;
+      } else {
+            alert("Please fill in your name and then click on 'Create' to be able to download;  الرجاء تعبئة خانة الاسم والضغط على زر الانشاء بعدها تستطيع تحميلها");
+      }
 };
+
+function isCanvasBlank(canvas) {
+      const context = canvas.getContext('2d');
+      const pixelBuffer = new Uint32Array(
+            context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+      );
+      return !pixelBuffer.some(color => color !== 0);
+}
 
 function validateInput() {
       var name = document.getElementById("name").value;
