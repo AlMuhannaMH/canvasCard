@@ -32,13 +32,17 @@ var canvas = document.getElementById("demo");
 
 download_img = function (el) {
       const blank = isCanvasBlank(document.getElementById('demo'));
-      alert(blank ? 'blank' : 'not blank');
       if (!blank) {
             var image = canvas.toDataURL("image/jpg");
             el.href = image;
-      } else {
-            alert("Please fill in your name and then click on 'Create' to be able to download;  الرجاء تعبئة خانة الاسم والضغط على زر الانشاء بعدها تستطيع تحميلها");
+            return true;
       }
+      else {
+            alert("Please fill in your name and then click on 'Create' to be able to download;  الرجاء تعبئة خانة الاسم والضغط على زر الانشاء بعدها تستطيع تحميلها");
+
+            return false;
+      }
+
 };
 
 function isCanvasBlank(canvas) {
