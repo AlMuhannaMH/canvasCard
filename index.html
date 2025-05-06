@@ -1,88 +1,108 @@
-<!doctype html>    
-<html lang="en">    
-<head>    
-    <meta charset="UTF-8">    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">    
-    <title>Create your Eid AlFitr Greeting</title>    
-    <link href='https://fonts.cdnfonts.com/css/tajawal' rel='stylesheet' type='text/css'>    
-    <link rel="stylesheet" href="css/style.css">    
-</head>    
-<body>    
-    <header>    
-        <div class="row justify-content-center text-center">    
-            <div class="col-md-6 p-3">    
-                <img class="img" src="images/logo.png" alt="Logo" aria-label="Eid Greeting Logo" loading="lazy" style="display: block; margin: 0 auto;">    
-                <h2 data-lang="en" class="heading-section">Create your Eid AlFitr Greeting</h2>    
-                <h2 data-lang="ar" class="heading-section">انشاء بطاقة تهنئة عيد الفطر</h2>    
-            </div>    
-        </div>    
-    </header>    
-    <section class="ftco-section">    
-        <div class="container">    
-            <div class="p-3">    
-                <span data-lang="en">Language:</span>    
-                <span data-lang="ar">اللغة:</span>    
-                <select title="Change Language" id="change-language">    
-                    <option value="en">English</option>    
-                    <option value="ar">العربية</option>    
-                </select>    
-            </div>    
-            <div class="row justify-content-center text-center">    
-                <div class="col-md-12">    
-                    <div class="wrapper">    
-                        <div class="row no-gutters text-center">    
-                            <div class="col-md-12 d-flex justify-content-center text-center">    
-                                <div class="contact-wrap w-100 p-3">    
-                                    <h3 data-lang="en">Share your Eid AlFitr Greeting</h3>    
-                                    <h3 data-lang="ar">شارك تهنئة عيد الفطر</h3>    
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">    
-                                        <div class="row" align="center">    
-                                            <div class="col-md-12">    
-                                                <div class="form-group">    
-                                                    <label for="name" data-lang="en">Enter your name</label>    
-                                                    <label for="name" data-lang="ar">أكتب اسمك</label>    
-                                                    <input type="text" class="form-control" name="name" id="name"    
-                                                        placeholder="" style='width:20em;text-align: center'>    
-                                                </div>    
-                                            </div>    
-                                            <div class="col-md-12 ">    
-                                                <div data-lang="en" class="form-group">    
-                                                    <input id="preview" type="button" value="Create" class="btn btn-primary">    
-                                                    <a class="btn btn-primary" id="download" download="EidAlFitrGreeting.png" href="">Download Image</a>    
-                                                </div>    
-                                                <div data-lang="ar" class="form-group">    
-                                                    <input id="preview" type="button" value="إنشاء" class="btn btn-primary">    
-                                                    <a class="btn btn-primary" id="download" download="EidAlFitrGreeting.png" href="">تحميل الصورة</a>    
-                                                </div>    
-                                            </div>    
-                                        </div>    
-                                    </form>    
-                                </div>    
-                            </div>    
-                            <div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">    
-                                <img class="w-100 p-3 img" src="images/EidAlFitrGreeting.jpg" alt="Greeting Image" id="image" loading="lazy">        
-                            </div>    
-                            <div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">    
-                                <canvas class="w-100 p-3 img" id="demo"></canvas>    
-                            </div>    
-                        </div>    
-                    </div>    
-                </div>    
-            </div>    
-        </div>    
-    </section>    
-    <script src="js/jquery.min.js"></script>    
-    <script src="js/popper.js"></script>    
-    <script src="js/bootstrap.min.js"></script>    
-    <script src="js/jquery.validate.min.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
-    <script src="js/scrpit.js"></script>    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/i18n-language@1.0.8/i18n-language.min.js"></script>    
-</body>    
-<footer class="row justify-content-center text-center">    
-    <div class="col-md-6 p-3">    
-        <p>&copy; 2023 Mohammed AlMuhanna</p>    
-    </div>    
-</footer>    
-</html>    
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title data-lang="en">Create your Eid AlFitr Greeting</title>
+	<title data-lang="ar">انشاء بطاقة تهنئة عيد الفطر</title>
+	<link href='https://fonts.cdnfonts.com/css/tajawal' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<header>
+		<div class="row justify-content-center text-center">
+			<div class="col-md-6 p-3">
+				<img class="img" src="images/logo.png" alt="" style="display: block; margin: 0 auto;">
+				<h2 data-lang="en" class="heading-section">Create your Eid AlFitr Greeting</h2>
+				<h2 data-lang="ar" class="heading-section">انشاء بطاقة تهنئة عيد الفطر</h2>
+			</div>
+		</div>
+	</header>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="p-3">
+				<span data-lang="en">
+					Language:
+				</span>
+				<span data-lang="ar">
+					اللغة:
+				</span>
+				<select title="Change Language" id="change-language">
+					<option value="en">
+						English
+					</option>
+					<option value="ar">
+						العربية
+					</option>
+				</select>
+			</div>
+			<div class="row justify-content-center text-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<div class="row no-gutters text-center">
+							<div class="col-md-12 d-flex justify-content-center text-center">
+								<div class="contact-wrap w-100 p-3">
+									<h3 data-lang="en">Share your Eid AlFitr Greeting</h3>
+									<h3 data-lang="ar">شارك تهنئة عيد الفطر</h3>
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row" align="center">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="name" data-lang="en">Enter you name</label>
+													<label for="name" data-lang="ar">أكتب اسمك</label>
+													<input
+														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
+														type="text" class="form-control" name="name" id="name"
+														placeholder="" style='width:20em;text-align: center'>
+												</div>
+											</div>
+											<div class="col-md-12 ">
+												<div data-lang="en" class="form-group">
+													<input id="preview" type="button" value="Create"
+														onclick="validateInput()" class="btn btn-primary">
+													<a class="btn btn-primary" id="download"
+														download="EidAlFitrGreeting.png" href=""
+														onclick="return download_img(this);">Download Image</a>
+												</div>
+												<div data-lang="ar" class="form-group">
+													<input id="preview" type="button" value="إنشاء"
+														onclick="validateInput()" class="btn btn-primary">
+													<a class="btn btn-primary" id="download"
+														download="EidAlFitrGreeting.png" href=""
+														onclick="return download_img(this);">تحميل الصورة</a>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">
+								<img class="w-100 p-3 img" src="images/EidAlFitrGreeting.jpg" alt="" id="image">
+							</div>
+							<div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">
+								<canvas class="w-100 p-3 img" id="demo"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/i18n-language@1.0.8/i18n-language.min.js"></script>
+</body>
+<footer class="row justify-content-center text-center">
+	<div class="col-md-6 p-3">
+		<p>&copy; 2023 Mohammed AlMuhanna</p>
+	</div>
+</footer>
+
+</html>
