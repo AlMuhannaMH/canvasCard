@@ -83,6 +83,25 @@
         .logout-btn:hover {
             background-color: #c82333;
         }
+        #previewCanvas {
+    cursor: default;
+    transition: cursor 0.2s;
+}
+
+#previewCanvas:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.draggable-indicator {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255,0,0,0.5);
+    border: 2px solid red;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
     </style>
 </head>
 <body>
