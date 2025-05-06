@@ -1,108 +1,299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<title data-lang="en">Create your Eid AlFitr Greeting</title>
-	<title data-lang="ar">انشاء بطاقة تهنئة عيد الفطر</title>
-	<link href='https://fonts.cdnfonts.com/css/tajawal' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Create personalized Eid Al-Fitr greeting cards">
+  <title data-lang="en">Create your Eid Al-Fitr Greeting</title>
+  <title data-lang="ar">إنشاء بطاقة تهنئة عيد الفطر</title>
+  <link href="https://fonts.cdnfonts.com/css/tajawal" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    [lang="ar"] {
+      direction: rtl;
+      text-align: right;
+    }
+    
+    .btn-primary {
+      background-color: #4C956C;
+      border-color: #4C956C;
+      margin: 10px;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2C6E49;
+      border-color: #2C6E49;
+    }
+    
+    .img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .heading-section {
+      color: #2C6E49;
+      margin-top: 20px;
+    }
+    
+    #demo {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .form-control:focus {
+      border-color: #4C956C;
+      box-shadow: 0 0 0 0.25rem rgba(76, 149, 108, 0.25);
+    }
+    
+    footer {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #f8f9fa;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .loading-spinner {
+      width: 2rem;
+      height: 2rem;
+    }
+  </style>
 </head>
 
 <body>
-	<header>
-		<div class="row justify-content-center text-center">
-			<div class="col-md-6 p-3">
-				<img class="img" src="images/logo.png" alt="" style="display: block; margin: 0 auto;">
-				<h2 data-lang="en" class="heading-section">Create your Eid AlFitr Greeting</h2>
-				<h2 data-lang="ar" class="heading-section">انشاء بطاقة تهنئة عيد الفطر</h2>
-			</div>
-		</div>
-	</header>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="p-3">
-				<span data-lang="en">
-					Language:
-				</span>
-				<span data-lang="ar">
-					اللغة:
-				</span>
-				<select title="Change Language" id="change-language">
-					<option value="en">
-						English
-					</option>
-					<option value="ar">
-						العربية
-					</option>
-				</select>
-			</div>
-			<div class="row justify-content-center text-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<div class="row no-gutters text-center">
-							<div class="col-md-12 d-flex justify-content-center text-center">
-								<div class="contact-wrap w-100 p-3">
-									<h3 data-lang="en">Share your Eid AlFitr Greeting</h3>
-									<h3 data-lang="ar">شارك تهنئة عيد الفطر</h3>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row" align="center">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label for="name" data-lang="en">Enter you name</label>
-													<label for="name" data-lang="ar">أكتب اسمك</label>
-													<input
-														onkeydown="if (event.keyCode == 13) {document.getElementById('preview').click();event.returnValue=false;event.cancel=true;}"
-														type="text" class="form-control" name="name" id="name"
-														placeholder="" style='width:20em;text-align: center'>
-												</div>
-											</div>
-											<div class="col-md-12 ">
-												<div data-lang="en" class="form-group">
-													<input id="preview" type="button" value="Create"
-														onclick="validateInput()" class="btn btn-primary">
-													<a class="btn btn-primary" id="download"
-														download="EidAlFitrGreeting.png" href=""
-														onclick="return download_img(this);">Download Image</a>
-												</div>
-												<div data-lang="ar" class="form-group">
-													<input id="preview" type="button" value="إنشاء"
-														onclick="validateInput()" class="btn btn-primary">
-													<a class="btn btn-primary" id="download"
-														download="EidAlFitrGreeting.png" href=""
-														onclick="return download_img(this);">تحميل الصورة</a>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">
-								<img class="w-100 p-3 img" src="images/EidAlFitrGreeting.jpg" alt="" id="image">
-							</div>
-							<div class="col-md-6 d-flex align-items-stretch justify-content-center text-center">
-								<canvas class="w-100 p-3 img" id="demo"></canvas>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="js/scrpit.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/i18n-language@1.0.8/i18n-language.min.js"></script>
+  <div class="container">
+    <header class="row justify-content-center text-center py-4">
+      <div class="col-md-6">
+        <img class="img mb-3" src="images/logo.png" alt="Logo" style="max-width: 200px;">
+        <h1 data-lang="en" class="heading-section">Create your Eid Al-Fitr Greeting</h1>
+        <h1 data-lang="ar" class="heading-section">إنشاء بطاقة تهنئة عيد الفطر</h1>
+      </div>
+    </header>
+
+    <section class="main-content mb-5">
+      <div class="language-selector mb-4 text-end">
+        <span data-lang="en">Language:</span>
+        <span data-lang="ar">اللغة:</span>
+        <select title="Change Language" id="change-language" class="form-select d-inline-block ms-2" style="width: auto;">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <h2 data-lang="en" class="card-title text-center mb-4">Share your Eid Al-Fitr Greeting</h2>
+              <h2 data-lang="ar" class="card-title text-center mb-4">شارك تهنئة عيد الفطر</h2>
+              
+              <form id="greetingForm" class="mb-4">
+                <div class="mb-3 text-center">
+                  <label for="name" class="form-label" data-lang="en">Enter your name</label>
+                  <label for="name" class="form-label" data-lang="ar">أكتب اسمك</label>
+                  <input type="text" class="form-control mx-auto" name="name" id="name" 
+                         style="max-width: 300px; text-align: center;">
+                </div>
+                
+                <div class="mb-3 text-center">
+                  <label for="greeting-style" class="form-label" data-lang="en">Choose a style</label>
+                  <label for="greeting-style" class="form-label" data-lang="ar">اختر النمط</label>
+                  <select id="greeting-style" class="form-select mx-auto" style="max-width: 300px;">
+                    <option value="classic" data-lang="en">Classic</option>
+                    <option value="classic" data-lang="ar">كلاسيكي</option>
+                    <option value="modern" data-lang="en">Modern</option>
+                    <option value="modern" data-lang="ar">عصري</option>
+                  </select>
+                </div>
+                
+                <div class="text-center">
+                  <button type="button" id="preview-btn" class="btn btn-primary" data-lang="en">Create</button>
+                  <button type="button" id="preview-btn" class="btn btn-primary" data-lang="ar">إنشاء</button>
+                  
+                  <a class="btn btn-primary" id="download-btn" download="EidAlFitrGreeting.png" href="#" data-lang="en">Download Image</a>
+                  <a class="btn btn-primary" id="download-btn" download="EidAlFitrGreeting.png" href="#" data-lang="ar">تحميل الصورة</a>
+                </div>
+                
+                <div class="loading text-center">
+                  <div class="spinner-border loading-spinner text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <p data-lang="en">Creating your greeting...</p>
+                  <p data-lang="ar">جاري إنشاء التهنئة...</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header" data-lang="en">Template</div>
+            <div class="card-header" data-lang="ar">القالب</div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+              <img class="img" src="images/EidAlFitrGreeting.jpg" alt="Eid Greeting Template" id="template-image">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header" data-lang="en">Your Personalized Greeting</div>
+            <div class="card-header" data-lang="ar">تهنئتك الشخصية</div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+              <canvas id="greeting-canvas" class="img"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center py-3">
+      <div class="container">
+        <p>&copy; 2023-2025 Mohammed AlMuhanna | <span data-lang="en">All Rights Reserved</span><span data-lang="ar">جميع الحقوق محفوظة</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18n-language@1.0.8/i18n-language.min.js"></script>
+  
+  <script>
+    // Language switcher functionality
+    $(document).ready(function() {
+      // Set default language
+      const defaultLang = 'en';
+      setLanguage(defaultLang);
+      
+      // Change language
+      $('#change-language').on('change', function() {
+        setLanguage($(this).val());
+      });
+      
+      function setLanguage(lang) {
+        $('html').attr('lang', lang);
+        
+        // Hide all language elements first
+        $('[data-lang]').hide();
+        
+        // Show only elements for the selected language
+        $('[data-lang="' + lang + '"]').show();
+        
+        // Store the selected language preference
+        localStorage.setItem('preferredLanguage', lang);
+      }
+      
+      // Check if user has a saved language preference
+      const savedLang = localStorage.getItem('preferredLanguage');
+      if (savedLang) {
+        $('#change-language').val(savedLang);
+        setLanguage(savedLang);
+      }
+    });
+
+    // Greeting card functionality
+    $(document).ready(function() {
+      const canvas = document.getElementById('greeting-canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = 'images/EidAlFitrGreeting.jpg';
+      
+      // When image loads, set canvas dimensions
+      img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+      };
+      
+      // Preview button click handler
+      $('#preview-btn').on('click', function() {
+        const name = $('#name').val().trim();
+        
+        if (!name) {
+          // Show error message based on selected language
+          const lang = $('#change-language').val();
+          const message = lang === 'ar' ? 'الرجاء إدخال اسمك' : 'Please enter your name';
+          alert(message);
+          return;
+        }
+        
+        // Show loading spinner
+        $('.loading').show();
+        
+        // Generate greeting with slight delay to show loading effect
+        setTimeout(function() {
+          generateGreeting(name);
+          $('.loading').hide();
+        }, 600);
+      });
+      
+      // Generate greeting on canvas
+      function generateGreeting(name) {
+        // Clear canvas and redraw image
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        
+        // Add name to the greeting
+        const style = $('#greeting-style').val();
+        const lang = $('#change-language').val();
+        
+        ctx.textAlign = 'center';
+        ctx.fillStyle = style === 'modern' ? '#2C6E49' : '#8B4513';
+        
+        // Set font size and position based on style and language
+        if (lang === 'ar') {
+          ctx.font = style === 'modern' ? 'bold 42px Tajawal' : 'bold 36px Tajawal';
+          
+          // Different position for Arabic text
+          ctx.fillText(name, canvas.width / 2, canvas.height - 100);
+          
+          // Add "Eid Mubarak" in Arabic
+          ctx.font = style === 'modern' ? '34px Tajawal' : '30px Tajawal';
+          ctx.fillText('عيد مبارك', canvas.width / 2, canvas.height - 50);
+        } else {
+          ctx.font = style === 'modern' ? 'bold 38px Tajawal' : 'bold 34px Tajawal';
+          
+          // Position for English text
+          ctx.fillText(name, canvas.width / 2, canvas.height - 100);
+          
+          // Add "Eid Mubarak" in English
+          ctx.font = style === 'modern' ? '32px Tajawal' : '28px Tajawal';
+          ctx.fillText('Eid Mubarak', canvas.width / 2, canvas.height - 50);
+        }
+        
+        // Enable download button
+        enableDownload();
+      }
+      
+      // Enable download functionality
+      function enableDownload() {
+        const downloadUrl = canvas.toDataURL('image/png');
+        $('#download-btn').attr('href', downloadUrl);
+      }
+      
+      // Handle name input enter key press
+      $('#name').on('keypress', function(e) {
+        if (e.which === 13) {
+          e.preventDefault();
+          $('#preview-btn').click();
+        }
+      });
+    });
+  </script>
 </body>
-<footer class="row justify-content-center text-center">
-	<div class="col-md-6 p-3">
-		<p>&copy; 2023 Mohammed AlMuhanna</p>
-	</div>
-</footer>
 
 </html>
