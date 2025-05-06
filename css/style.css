@@ -11977,18 +11977,27 @@ textarea.form-control {
   font-weight: 500;
   color: #e3b04b;
 }
-
+.btn-primary {    
+  margin: 5px;    
+}  
 /* Sample responsive styling */    
 @media (max-width: 768px) {    
   .img {    
       width: 100%;    
   }    
 }    
-  
+  /* Accessibility */    
+[aria-required="true"] {    
+  border: 2px solid #ff0000; /* Example for indicating required fields */    
+}  
 body {    
   font-family: 'Tajawal', sans-serif;    
 }    
-  
+  /* Improved color scheme */    
+body {    
+  background-color: #f8f9fa; /* Light background */    
+  color: #343a40; /* Dark text for better contrast */    
+}   
 .heading-section {    
   margin-bottom: 20px;    
 }    
