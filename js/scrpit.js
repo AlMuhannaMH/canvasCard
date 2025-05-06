@@ -1,186 +1,282 @@
-    // Language switcher functionality
-    $(document).ready(function() {
-      // Set default language
-      const defaultLang = 'en';
-      setLanguage(defaultLang);
+// Wait for DOM to be fully loaded    
+document.addEventListener('DOMContentLoaded', () => {    
+  // Initialize language selector    
+  initLanguageSelector();    
       
-      // Change language
-      $('#change-language').on('change', function() {
-        setLanguage($(this).val());
-      });
+  // Add event listeners    
+  document.getElementById('preview').addEventListener('click', validateInput);    
+  document.getElementById('download').addEventListener('click', function(e) {    
+    return download_img(this, e);    
+  });    
       
-      function setLanguage(lang) {
-        $('html').attr('lang', lang);
+  // Auto-generate preview when pressing Enter in the name field    
+  document.getElementById('name').addEventListener('keypress', function(e) {    
+    if (e.key === 'Enter') {    
+      e.preventDefault();    
+      validateInput();    
+    }    
+  });    
+      
+  // Set default placeholder based on language    
+  updateGreetingPlaceholder(document.getElementById('change-language').value);    
+    
+  // Pre-load the font to avoid FOUT (Flash of Unstyled Text)    
+  loadFont(() => {    
+    console.log('Font loaded and ready');    
+  });    
+});    
+    
+/**    
+ * Preload the Tajawal font to ensure it's available when drawing on canvas    
+ */    
+function loadFont(callback) {    
+  const fontTajawal = new FontFace(    
+    "Tajawal",     
+    "url(https://fonts.cdnfonts.com/s/15774/Tajawal-Bold.woff)",     
+    { weight: "700" }    
+  );    
+      
+  fontTajawal.load().then(() => {    
+    document.fonts.add(fontTajawal);    
+    console.log('Font loaded successfully');    
+    if (callback) callback(); // Invoke callback when font loading is complete    
+  }).catch(err => console.error('Font loading error:', err));    
+}    
+    
+/**    
+ * Initialize language selector and handle language changes    
+ */    
+function initLanguageSelector() {    
+  const languageSelector = document.getElementById('change-language');    
+      
+  // Set initial language based on browser preference or default to English    
+  const userLang = navigator.language || navigator.userLanguage;    
+  const initialLang = userLang.startsWith('ar') ? 'ar' : 'en';    
+  languageSelector.value = initialLang;    
+      
+  // Apply initial language    
+  changeLanguage(initialLang);    
+      
+  // Add change event listener    
+  languageSelector.addEventListener('change', (e) => {    
+    changeLanguage(e.target.value);    
+  });    
+}    
+    
+/**    
+ * Change UI language    
+ * @param {string} lang - Language code ('en' or 'ar')    
+ */    
+function changeLanguage(lang) {    
+  // Hide all language elements    
+  document.querySelectorAll('[data-lang]').forEach(el => {    
+    el.style.display = 'none';    
+  });    
+      
+  // Show elements for the selected language    
+  document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {    
+    el.style.display = 'block';    
+  });    
+      
+  // Update document direction for RTL support    
+  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';    
+      
+  // Update placeholder for name input based on language    
+  const nameField = document.getElementById('name');    
+  nameField.placeholder = lang === 'ar' ? 'اكتب اسمك هنا' : 'Enter your name here';    
+      
+  // Update greeting placeholder    
+  updateGreetingPlaceholder(lang);    
+}    
+    
+/**    
+ * Updates the greeting placeholder text based on language    
+ * @param {string} lang - Language code ('en' or 'ar')    
+ */    
+function updateGreetingPlaceholder(lang) {    
+  const greetingField = document.getElementById('greeting');    
+  if (greetingField) {    
+    greetingField.placeholder = lang === 'ar'     
+      ? 'عيد مبارك وكل عام وأنتم بخير!'    
+      : 'Happy Eid Mubarak to you and your family!';    
+  }    
+}    
+    
+/**    
+ * Validates user input before generating the greeting card    
+ */    
+function validateInput() {    
+  const nameField = document.getElementById('name');    
+  const name = nameField.value.trim();    
+  const greeting = document.getElementById('greeting').value.trim();    
+  const currentLang = document.getElementById('change-language').value;    
+      
+  if (name === "") {    
+    const message = currentLang === 'ar'     
+      ? "الرجاء تعبئة خانة الاسم"     
+      : "Please enter your name";    
         
-        // Hide all language elements first
-        $('[data-lang]').hide();
+    alert(message);    
+    nameField.focus();    
+    return;    
+  }    
+      
+  // Generate card with name and optional greeting    
+  generateGreetingCard(name, greeting);    
+}    
+    
+/**    
+ * Generates the greeting card with the user's name and custom greeting    
+ * @param {string} name - User's name to display on the card    
+ * @param {string} greeting - Custom greeting message (optional)    
+ */    
+function generateGreetingCard(name, greeting = '') {    
+  const canvas = document.getElementById("demo");    
+  const ctx = canvas.getContext("2d");    
+  const img = new Image();    
+      
+  // Show loading indicator    
+  canvas.classList.add('loading');    
+      
+  img.onload = () => {    
+    // Set canvas dimensions to match image    
+    canvas.width = img.naturalWidth;    
+    canvas.height = img.naturalHeight;    
         
-        // Show only elements for the selected language
-        $('[data-lang="' + lang + '"]').show();
+    // Draw background image    
+    ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);    
         
-        // Store the selected language preference
-        localStorage.setItem('preferredLanguage', lang);
-      }
-      
-      // Check if user has a saved language preference
-      const savedLang = localStorage.getItem('preferredLanguage');
-      if (savedLang) {
-        $('#change-language').val(savedLang);
-        setLanguage(savedLang);
-      }
-    });
-
-    // Greeting card functionality
-    $(document).ready(function() {
-      // Load custom font (integrating with original code)
-      const fontTajawal = new FontFace("Tajawal", "url(https://fonts.cdnfonts.com/s/15774/Tajawal-Bold.woff)", { weight: "700" });
-      document.fonts.add(fontTajawal);
-      
-      const canvas = document.getElementById('greeting-canvas');
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.src = 'images/EidAlFitrGreeting.jpg';
-      
-      // When image loads, set canvas dimensions
-      img.onload = function() {
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-      };
-      
-      // Preview button click handler
-      $('#preview-btn').on('click', function() {
-        validateInput();
-      });
-      
-      // Handle name input enter key press
-      $('#name').on('keypress', function(e) {
-        if (e.which === 13) {
-          e.preventDefault();
-          $('#preview-btn').click();
-        }
-      });
-      
-      // Validate input before generating greeting
-      function validateInput() {
-        const name = $('#name').val().trim();
-        const lang = $('#change-language').val();
+    // Calculate text position (centered horizontally, fixed vertical position)    
+    const centerX = canvas.width / 2;    
+    const nameY = 890;  // Name vertical position    
         
-        if (!name) {
-          // Show error message based on selected language
-          const message = lang === 'ar' 
-            ? "الرجاء تعبئة خانة الاسم والضغط على زر الانشاء" 
-            : "Please fill in your name and click on 'Create'";
-          alert(message);
-          return;
-        }
+    // Draw name text    
+    drawTextWithBackground(ctx, name, centerX, nameY, 46, 'rgba(0, 155, 19, 1)');    
         
-        // Show loading spinner
-        $('.loading').show();
+    // Draw greeting text if provided    
+    if (greeting) {    
+      const greetingY = nameY + 70; // Position greeting below name    
+      drawTextWithBackground(ctx, greeting, centerX, greetingY, 32, 'rgba(0, 155, 19, 0.9)');    
+    }    
         
-        // Generate greeting with slight delay to show loading effect
-        setTimeout(function() {
-          overlayText(name);
-          $('.loading').hide();
-        }, 600);
-      }
-      
-      // Generate greeting on canvas (based on original script.js)
-      function overlayText(name) {
-        // Clear canvas and redraw image
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+    // Remove loading indicator    
+    canvas.classList.remove('loading');    
         
-        // Load the font and then add text
-        fontTajawal.load().then(
-          () => {
-            const style = $('#greeting-style').val();
-            const lang = $('#change-language').val();
-            
-            // Set text properties
-            ctx.textBaseline = "middle";
-            ctx.textAlign = "center";
-            
-            // Choose color based on style
-            ctx.fillStyle = style === 'modern' ? "rgba(0,155,19,1)" : "#8B4513";
-            
-            // Position for text (using coordinates from original script as reference)
-            const centerX = 602.5; // From original script
-            const centerY = 890;   // From original script
-            
-            // Calculate text width for background (if needed)
-            ctx.font = '700 46px "Tajawal"';
-            const textWidth = ctx.measureText(name).width;
-            
-            // Add semi-transparent background for text (optional, based on style)
-            if (style === 'classic') {
-              ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-              ctx.fillRect(centerX - textWidth / 2 - 10, centerY - 30, textWidth + 20, 50);
-              ctx.fillStyle = "rgba(0,155,19,1)"; // Reset to green color
-            }
-            
-            // Add name to the greeting
-            if (lang === 'ar') {
-              // Arabic text placement
-              ctx.font = style === 'modern' ? '700 48px "Tajawal"' : '700 46px "Tajawal"';
-              ctx.fillText(name, centerX, centerY, img.width * 0.8);
-              
-              // Add "Eid Mubarak" in Arabic if modern style
-              if (style === 'modern') {
-                ctx.font = '700 36px "Tajawal"';
-                ctx.fillText('عيد مبارك', centerX, centerY + 60);
-              }
-            } else {
-              // English text placement
-              ctx.font = style === 'modern' ? '700 48px "Tajawal"' : '700 46px "Tajawal"';
-              ctx.fillText(name, centerX, centerY, img.width * 0.8);
-              
-              // Add "Eid Mubarak" in English if modern style
-              if (style === 'modern') {
-                ctx.font = '700 36px "Tajawal"';
-                ctx.fillText('Eid Mubarak', centerX, centerY + 60);
-              }
-            }
-            
-            // Enable download button
-            enableDownload();
-          },
-          (err) => {
-            console.error("Font loading error:", err);
-            alert("Error loading font. Please try again.");
-          }
-        );
-      }
+    // Enable download button    
+    document.getElementById('download').classList.add('active');    
+  };    
       
-      // Enable download functionality
-      function enableDownload() {
-        // Check if canvas is blank (function from original script)
-        if (!isCanvasBlank(canvas)) {
-          const downloadUrl = canvas.toDataURL("image/png");
-          $('#download-btn').attr('href', downloadUrl);
-        }
-      }
+  // Handle image loading errors    
+  img.onerror = () => {    
+    console.error('Error loading the greeting card image');    
+    canvas.classList.remove('loading');    
+        
+    // Draw error message on canvas    
+    ctx.fillStyle = "#f8d7da";    
+    ctx.fillRect(0, 0, canvas.width, canvas.height);    
+    ctx.fillStyle = "#721c24";    
+    ctx.font = '20px Arial';    
+    ctx.fillText('Error loading image', canvas.width / 2, canvas.height / 2);    
+  };    
       
-      // Check if canvas is blank (from original script)
-      function isCanvasBlank(canvas) {
-        const context = canvas.getContext('2d');
-        const pixelBuffer = new Uint32Array(
-          context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
-        );
-        return !pixelBuffer.some(color => color !== 0);
-      }
+  // Start loading the image    
+  img.src = "images/EidAlFitrGreeting.jpg";    
+}    
+    
+/**    
+ * Draws text with a semi-transparent background on the canvas    
+ * @param {CanvasRenderingContext2D} ctx - Canvas context    
+ * @param {string} text - Text to draw    
+ * @param {number} x - X position (center)    
+ * @param {number} y - Y position    
+ * @param {number} fontSize - Font size in pixels    
+ * @param {string} color - Text color    
+ */    
+function drawTextWithBackground(ctx, text, x, y, fontSize, color) {    
+  // Configure text styling    
+  ctx.textBaseline = "middle";    
+  ctx.font = `700 ${fontSize}px "Tajawal"`;    
+  ctx.textAlign = "center";    
       
-      // Handle download button click
-      $('#download-btn').on('click', function(e) {
-        if (isCanvasBlank(canvas)) {
-          e.preventDefault();
-          const lang = $('#change-language').val();
-          const message = lang === 'ar' 
-            ? "الرجاء تعبئة خانة الاسم والضغط على زر الانشاء بعدها تستطيع تحميلها" 
-            : "Please fill in your name and then click on 'Create' to be able to download";
-          alert(message);
-          return false;
-        }
-        return true;
-      });
-    });
+  // Calculate text width for background    
+  const textWidth = ctx.measureText(text).width;    
+  const padding = fontSize * 0.4; // Proportional padding    
+      
+  // Draw semi-transparent background    
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";    
+  ctx.fillRect(    
+    x - textWidth / 2 - padding / 2,  // Left position    
+    y - fontSize / 2 - padding / 2,   // Top position    
+    textWidth + padding,              // Width    
+    fontSize + padding                // Height    
+  );    
+      
+  // Draw text    
+  ctx.fillStyle = color;    
+  ctx.fillText(text, x, y, ctx.canvas.width * 0.8); // Limit width to 80% of canvas    
+}    
+    
+/**    
+ * Checks if the canvas is blank (no image generated yet)    
+ * @param {HTMLCanvasElement} canvas - The canvas element to check    
+ * @return {boolean} True if canvas is blank, false otherwise    
+ */    
+function isCanvasBlank(canvas) {    
+  // Fast check - if canvas has no width or height, it's blank    
+  if (canvas.width === 0 || canvas.height === 0) {    
+    return true;    
+  }    
+      
+  // Pixel-level check    
+  const context = canvas.getContext('2d');    
+  const pixelBuffer = new Uint32Array(    
+    context.getImageData(0, 0, canvas.width, canvas.height).data.buffer    
+  );    
+      
+  // If any pixel has a color, canvas is not blank    
+  return !pixelBuffer.some(color => color !== 0);    
+}    
+    
+/**    
+ * Handles the image download process    
+ * @param {HTMLElement} el - The download link element    
+ * @param {Event} e - The click event    
+ * @return {boolean} True if download should proceed, false otherwise    
+ */    
+function download_img(el, e) {    
+  const canvas = document.getElementById('demo');    
+  const currentLang = document.getElementById('change-language').value;    
+      
+  // Check if canvas is blank    
+  if (isCanvasBlank(canvas)) {    
+    e.preventDefault();    
+        
+    const message = currentLang === 'ar'    
+      ? "الرجاء تعبئة خانة الاسم والضغط على زر الانشاء بعدها تستطيع تحميلها"    
+      : "Please fill in your name and then click on 'Create' to be able to download";    
+          
+    alert(message);    
+    return false;    
+  }    
+      
+  try {    
+    // Generate image data URL    
+    const imageData = canvas.toDataURL("image/png", 0.9);  // Use PNG with 90% quality    
+    el.href = imageData;    
+        
+    // Add custom file name with user's name    
+    const userName = document.getElementById('name').value.trim();    
+    const greeting = document.getElementById('greeting').value.trim();    
+    const fileName = greeting     
+      ? `EidAlFitrGreeting_${userName}_custom.png`    
+      : `EidAlFitrGreeting_${userName}.png`;    
+        
+    el.download = fileName;    
+        
+    return true;    
+  } catch (error) {    
+    console.error('Error generating download:', error);    
+    alert('Error creating downloadable image. Please try again.');    
+    return false;    
+  }    
+}    
