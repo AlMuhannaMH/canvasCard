@@ -25,7 +25,7 @@ function overlayText() {
             );
       };
 
-      img.src = "images/EidAlFitrGreeting.jpg";
+      img.src = "images/EidAlAdhaGreetingEnglish.png";
 }
 
 var canvas = document.getElementById("demo");
@@ -33,7 +33,7 @@ var canvas = document.getElementById("demo");
 download_img = function (el) {
       const blank = isCanvasBlank(document.getElementById('demo'));
       if (!blank) {
-            var image = canvas.toDataURL("image/jpg");
+            var image = canvas.toDataURL("image/png");
             el.href = image;
             return true;
       }
