@@ -15,9 +15,9 @@ function overlayText() {
                         ctx.textAlign = "center";
                         var width = ctx.measureText(document.getElementById("name").value).width;
                         ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-                        ctx.fillRect(602.5 - width / 2 - 10, 890 - 30, width + 20, 50);// + 20 since the text begins at 10
+                        ctx.fillRect(445 - width / 2 - 10, 890 - 30, width + 20, 50);// + 20 since the text begins at 10
                         ctx.fillStyle = "rgba(0,155,19,1)";
-                        ctx.fillText(document.getElementById("name").value, 602.5, 890, 615);
+                        ctx.fillText(document.getElementById("name").value, 445, 890, 615);
                   },
                   (err) => {
                         console.error(err);
