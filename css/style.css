@@ -7862,3 +7862,59 @@ textarea.form-control {
   font-weight: 500;
   color: #e3b04b;
 }
+/* General overrides for images and canvas */    
+img.img, canvas.img {    
+    max-width: 100%;    
+    height: auto;    
+    display: block;    
+    margin: 0 auto;    
+    padding: 0.5em;    
+}    
+    
+/* Make sure the input field isn't too wide on small screens */    
+@media (max-width: 767.98px) {    
+    input#name {    
+        width: 100% !important;    
+        min-width: 0;    
+    }    
+    .contact-wrap, .wrapper {    
+        padding: 1em 0.5em !important;    
+    }    
+    .ftco-section .container {    
+        padding-left: 0.5em;    
+        padding-right: 0.5em;    
+    }    
+}    
+    
+/* Stack columns vertically on small screens */    
+@media (max-width: 991.98px) {    
+    .row.no-gutters > [class^="col-"] {    
+        flex: 0 0 100%;    
+        max-width: 100%;    
+        margin-bottom: 1em;    
+    }    
+}    
+    
+/* Adjust buttons for small screens */    
+@media (max-width: 575.98px) {    
+    .btn {    
+        width: 100%;    
+        margin-bottom: 0.5em;    
+    }    
+}    
+    
+/* Headings and text size */    
+@media (max-width: 575.98px) {    
+    h2, h3 {    
+        font-size: 1.25rem;    
+    }    
+    label {    
+        font-size: 1rem;    
+    }    
+}    
+    
+/* Footer adjustments */    
+footer .col-md-6 {    
+    padding-left: 0.5em;    
+    padding-right: 0.5em;    
+}    

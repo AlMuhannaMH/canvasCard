@@ -11,21 +11,21 @@ function overlayText() {
     fontTajawal.load().then(
       () => {
         ctx.textBaseline = "middle";
-        ctx.font = '700 46px "Tajawal"';
+        ctx.font = '700 54px "Tajawal"';
         ctx.textAlign = "center";
         var widthMessage = ctx.measureText(document.getElementById("yourMessage").value).width;
-        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-        ctx.fillRect(444 - widthMessage / 2 - 10, 330 - 30, widthMessage + 20, 50); // + 20 since the text begins at 10
-        ctx.fillStyle = "rgba(0,155,19,1)";
-        ctx.fillText(document.getElementById("yourMessage").value, 444, 345, 700);
+        //ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        //ctx.fillRect(444 - widthMessage / 2 - 10, 330 - 30, widthMessage + 20, 50); // + 20 since the text begins at 10
+        ctx.fillStyle = "rgba(246, 246, 215,1)";
+        ctx.fillText(document.getElementById("yourMessage").value, 444, 360, 700);
 
         // Add yourName below yourMessage
-        ctx.font = '700 36px "Tajawal"'; // Adjust font size for yourName
+        ctx.font = '700 44px "Tajawal"'; // Adjust font size for yourName
         var widthName = ctx.measureText(document.getElementById("yourName").value).width;
-        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-        ctx.fillRect(444 - widthName / 2 - 10, 380 - 30, widthName + 20, 50); // Adjust position for yourName
-        ctx.fillStyle = "rgba(0,155,19,1)";
-        ctx.fillText(document.getElementById("yourName").value, 444, 395, 700);
+        //ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        //ctx.fillRect(444 - widthName / 2 - 10, 380 - 30, widthName + 20, 50); // Adjust position for yourName
+        ctx.fillStyle = "rgba(246, 246, 215,1)";
+        ctx.fillText(document.getElementById("yourName").value, 444, 410, 700);
       },
       (err) => {
         console.error(err);
