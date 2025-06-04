@@ -7918,3 +7918,7 @@ footer .col-md-6 {
     padding-left: 0.5em;    
     padding-right: 0.5em;    
 }    
+
+.form-group {    
+  margin-bottom: 1rem;    
+}    
