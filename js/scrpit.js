@@ -25,7 +25,7 @@ function overlayText() {
         //ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
         //ctx.fillRect(444 - widthName / 2 - 10, 380 - 30, widthName + 20, 50); // Adjust position for yourName
         ctx.fillStyle = "rgba(246, 246, 215,1)";
-        ctx.fillText(document.getElementById("yourName").value, 444, 410, 700);
+        ctx.fillText(document.getElementById("yourName").value, 444, 420, 700);
       },
       (err) => {
         console.error(err);
